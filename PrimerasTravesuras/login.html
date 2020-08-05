@@ -108,31 +108,31 @@
 				</div>
 			</div>
 		</nav>
-	<section class="ftco-section ftco-consult ftco-no-pt ftco-no-pb"
-		style="background-image: url(./images/inicio2.jpg);" data-stellar-background-ratio="0.5">
+		<section class="ftco-section ftco-consult ftco-no-pt ftco-no-pb"
+		style="background-image: url(./images/bg_5.jpg);" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row justify-content-end">
 				<div class="col-md-6 py-5 px-md-5">
-					<div class="py-md-6">
+					<div class="py-md-7">
 						<div class="heading-section heading-section-white ftco-animate mb-5">
 							<h2 class="ftco-heading-2 text-center">Inicie Sesión</h2>
 						</div>
 						<div class="heading-section heading-section-white ftco-animate mb-5 text-center">
-							<h4 class="navbar-brand">Seed. <span>School</span></h4>
+							<h4 class="navbar-brand1">Seed. <span>School</span></h4>
 						</div>
-						<form action="#" class="appointment-form ftco-animate" method="POST">
+						<form id="login" action="../intranet/Login/login.php" class="appointment-form ftco-animate" method="POST">
 							<div class="d-md-flex">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Usuario">
+									<input name="username" type="text" class="form-control" placeholder="Usuario">
 								</div>
 								<div class="form-group ml-md-5">
-									<input type="password" class="form-control" placeholder="Contraseña">
+									<input name="password" type="password" class="form-control" placeholder="Contraseña">
 								</div>
 							</div>
 							<p class="mb-0">
-								<a href="../Intranet2/Index.html"
-									class="btn py-2 px-3 btn-primary d-flex align-items-center justify-content-center">
+								<a href="#" onclick="document.getElementById('login').submit()"
+								class="btn py-2 px-3 btn-primary d-flex align-items-center justify-content-center">
 									<span>Ingresar</span>
 								</a>
 							</p>
@@ -140,13 +140,11 @@
 									contraseña?</a>
 							</p>
 						</form>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
 	<footer class="ftco-footer ftco-bg-dark ftco-section">
 		<div class="container">
 			<div class="row mb-4">
