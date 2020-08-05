@@ -88,9 +88,9 @@ if (!isset($_SESSION['USU'])) {
             <img src="../../dist/img/USUm1.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <?php $temp = explode(" ", $_SESSION['USU']['PNAME'] ); ?>
-            <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME'] ); ?>
-            <a href="#" class="d-block"><?php echo $temp[0];?></br> <?php echo $temp2[0];?> </a>
+            <?php $temp = explode(" ", $_SESSION['USU']['PNAME']); ?>
+            <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME']); ?>
+            <a href="#" class="d-block"><?php echo $temp[0]; ?></br> <?php echo $temp2[0]; ?> </a>
           </div>
         </div>
 
@@ -101,7 +101,7 @@ if (!isset($_SESSION['USU'])) {
                with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-              <a href="./index.php" class="nav-link active">
+              <a href="./index.php" class="nav-link ">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Inicio
@@ -109,71 +109,40 @@ if (!isset($_SESSION['USU'])) {
               </a>
             </li>
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link active">
                 <i class="nav-icon ion-ios-book"></i>
                 <p>
-                  Materias
+                  Matemáticas
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="./subject.php" class="nav-link active">
                     <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Matemáticas</p>
+                    <p>Anuncios</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../../index2.html" class="nav-link">
+                  <a href="./homework.php" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Ciencias Naturales</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Educación Estética</p>
+                    <p>Tareas</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Educación Física</p>
+                    <p>Archivos</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="../../index3.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Estudios Sociales</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Lengua Extranjera</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Lengua</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Literatura</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far ion-ios-book-outline av-icon"></i>
-                    <p>Naturales y Sociales</p>
+                    <p>Tutor</p>
                   </a>
                 </li>
               </ul>
             </li>
-
         </nav>
         <!-- /.sidebar-menu -->
       </div>
@@ -187,12 +156,13 @@ if (!isset($_SESSION['USU'])) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Información</h1>
+              <h1>Aula</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                <li class="breadcrumb-item active">Inicio</li>
+                <li class="breadcrumb-item">Matemáticas</li>
+                <li class="breadcrumb-item active">Anuncios</li>
               </ol>
             </div>
           </div>
@@ -202,90 +172,63 @@ if (!isset($_SESSION['USU'])) {
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>9</h3>
-                  <p>Materias</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-ios-book"></i>
-                </div>
-                <a href="../classes/index.html" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
+          <div class="col-md-12">
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-bullhorn"></i>
+                  Anuncios
+                </h3>
               </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>100<sup style="font-size: 20px">%</sup></h3>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="callout callout-danger">
+                  <h5>I am a danger callout!</h5>
 
-                  <p>Asistencia</p>
+                  <p>There is a problem that we need to fix. A wonderful serenity has taken possession of my entire
+                    soul,
+                    like these sweet mornings of spring which I enjoy with my whole heart.</p>
                 </div>
-                <div class="icon">
-                  <i class="icon flaticon-education"></i>
+                <div class="callout callout-info">
+                  <h5>I am an info callout!</h5>
+
+                  <p>Follow the steps to continue to payment.</p>
                 </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
+                <div class="callout callout-warning">
+                  <h5>I am a warning callout!</h5>
+
+                  <p>This is a yellow callout.</p>
+                </div>
+                <div class="callout callout-success">
+                  <h5>I am a success callout!</h5>
+
+                  <p>This is a green callout.</p>
+                </div>
               </div>
+              <!-- /.card-body -->
             </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>.</h3>
-                  <p>Horario</p>
-                </div>
-                <div class="icon">
-                  <i class="icon fa fa-calendar"></i>
-                </div>
-                <a href="../classes/classtimetable.html" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3>8</h3>
-                  <p>Actividades en el Calendario</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-calendar"></i>
-                </div>
-                <a href="#" class="small-box-footer">ir <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-            <!-- ./col --><
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>9</h3>
-                  <p>Calificaciones</p>
-                </div>
-                <div class="icon">
-                  <i class="ion flaticon-diploma"></i>
-                </div>
-                <a href="../classes/index.html" class="small-box-footer">ir <i
-                    class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
+            <!-- /.card -->
           </div>
-          <!-- /.row -->
-          <!-- Main row -->
-
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- END ALERTS AND CALLOUTS -->
 
       </section>
-      <!-- right col -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Calificaciones</h1>
+            </div>
+            <!-- Main content -->
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
     </div>
-    <!-- /.row (main row) -->
+
+  </div>
+  <!-- /.row (main row) -->
   </div><!-- /.container-fluid -->
   </section>
 

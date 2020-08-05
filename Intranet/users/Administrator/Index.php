@@ -3,6 +3,12 @@ session_start();
 if (!isset($_SESSION['USU'])) {
   header('Location: ../../../Seed/login.html');
 }
+
+include '../../service/administratorService.php';
+$administratorService = new administratorService();
+$countAlumns = $administratorService->countTypePeople(1);
+$countTeachers =$administratorService->countTypePeople(3);
+
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +127,7 @@ if (!isset($_SESSION['USU'])) {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../../index2.html" class="nav-link">
+                  <a href="./managStudent.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Alumnos</p>
                   </a>
@@ -154,18 +160,62 @@ if (!isset($_SESSION['USU'])) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Fixed Layout</h1>
+              <h1>Dashboard</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="#">Layou t</a></li>
-                <li class="breadcrumb-item active">Fixed Layout</li>
+                <li class="breadcrumb-item active">DashBoard</li>
               </ol>
             </div>
           </div>
         </div><!-- /.container-fluid -->
+
+        <div class="row">
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3><?php echo $countAlumns ?></h3>
+                  <p>Estudiantes</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-users red-bg"></i>
+                </div>
+                <a href="../classes/index.html" class="small-box-footer">ir <i
+                    class="fas fa-arrow-circle-right"></i></a>
+              </div>
+              <div class="small-box bg-info">
+                <div class="inner">
+                  <h3><?php echo $countTeachers ?></h3>
+                  <p>Docentes</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-users red-bg"></i>
+                </div>
+                <a href="../classes/index.html" class="small-box-footer">ir <i
+                    class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
       </section>
+    
+      <div class="col-lg-4 col-sm-6 col-xs-12 main-widget">
+        <div class="main-box infographic-box">
+            <i class="fa fa-users red-bg"></i>
+            <span class="headline">Estudiantes</span>
+            <span class="value">
+               <? echo $countAlumns ?>
+               <? echo "funciona" ?>
+            </span>
+        </div>
+    </div>
+
+
+
+
+
+
 
       <!-- Main content -->
     </div>

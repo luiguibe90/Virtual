@@ -20,7 +20,17 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         } else if ($row['ROL'] == 'REPRESENTANTE') {
             session_start();
             $_SESSION["USU"] = $row;
-            header('Location: ');
+            header('Location: ../users/Representative/index.php');
         } 
+    }else{
+        echo "<script>
+                alert('Error contraseña o Nombre de Usuario');
+                window.location= '../../../Seed/login.html.php'
+        </script>";
+        //$msg = "Error contraseña o Nombre de Usuario";
+        header("location: ../../../Seed/login.html");
+
     }
 }
+
+?>

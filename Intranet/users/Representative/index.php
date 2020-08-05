@@ -44,34 +44,7 @@ if (!isset($_SESSION['USU'])) {
 <body class="hold-transition sidebar-mini layout-fixed">
   <!-- Site wrapper -->
   <div class="wrapper">
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="../users/student.html" class="nav-link">Inicio</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contacto</a>
-        </li>
-      </ul>
-
-      <!-- SEARCH FORM -->
-      <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-    </nav>
-    <!-- /.navbar -->
+   
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -101,10 +74,11 @@ if (!isset($_SESSION['USU'])) {
                with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-              <a href="./index.php" class="nav-link active">
+              <a href="widgets.html" class="nav-link active">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Inicio
+                  <span class="right badge badge-danger">New</span>
                 </p>
               </a>
             </li>
@@ -118,7 +92,7 @@ if (!isset($_SESSION['USU'])) {
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./subject.php" class="nav-link">
+                  <a href="../../index.html" class="nav-link">
                     <i class="far ion-ios-book-outline av-icon"></i>
                     <p>Matemáticas</p>
                   </a>
@@ -287,7 +261,10 @@ if (!isset($_SESSION['USU'])) {
     </div>
     <!-- /.row (main row) -->
   </div><!-- /.container-fluid -->
-  </section>
+  
+
+
+</section>
 
   </div>
 
