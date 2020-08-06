@@ -78,7 +78,7 @@ include '../../service/administratorService.php';
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="../../index3.html" class="brand-link">
-                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle1 ">
+                <img src="../../dist/img/Primeras.png" alt="AdminLTE Logo" class="brand-image img-circle1 ">
                 <span class="brand-text font-weight-light"><?php echo $_SESSION['USU']['ROL'] ?></span>
             </a>
             <!-- Sidebar -->
@@ -198,7 +198,7 @@ include '../../service/administratorService.php';
                                     <h3 class="card-title">Formulario Representante:</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <form role="form"   data-toggle="validator" method="post"  >
+                                <form role="form" data-toggle="validator" method="post">
                                     <div class="card-body">
                                         <div class="card-header">
                                             <h3 class="card-title">Datos del Representante:</h3>
@@ -206,43 +206,45 @@ include '../../service/administratorService.php';
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Numero de Cédula</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                                name="cedRepresentantive" placeholder="Ingrese Numero de Cédula" maxlength="10">
+                                                name="cedRepresentantive" placeholder="Ingrese Numero de Cédula"
+                                                maxlength="10">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nombres</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="nameRepresenative"   placeholder="Ingrese sus Nombres">
+                                                name="nameRepresenative" placeholder="Ingrese sus Nombres">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Apellidos</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="snRrepresentative"    placeholder="Ingrese sus pellidos">
+                                                name="snRrepresentative" placeholder="Ingrese sus pellidos">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Fecha nacimiento</label>
                                             <input type="date" class="form-control" id="exampleText"
-                                            name="dateBrhRepresentative"    placeholder="Ingrese su Fecha de Nacimiento">
+                                                name="dateBrhRepresentative"
+                                                placeholder="Ingrese su Fecha de Nacimiento">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Correo Personal</label>
                                             <input type="email" class="form-control" id="exampleInputEmail1"
-                                            name = "pemailRepresentative"    placeholder="Ingrese su email">
+                                                name="pemailRepresentative" placeholder="Ingrese su email">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Teléfono</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="telfRepresentative"    placeholder="Ingrese su numero de  Teléfono">
+                                                name="telfRepresentative" placeholder="Ingrese su numero de  Teléfono">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Dirección</label>
                                             <input type="text" class="form-control" id="exampleText"
-                                            name="addressRepresentative"    placeholder="Ingrese su dirección">
+                                                name="addressRepresentative" placeholder="Ingrese su dirección">
                                         </div>
                                         <label for="exampleInputText">Genero:</label></br>
-                                            <input type="radio" id="male" name="genderR" value="male">
-                                            <label for="male">Masculino</label><br>
-                                            <input type="radio" id="female" name="genderR" value="female">
-                                            <label for="female">Femenino</label><br>
+                                        <input type="radio" id="male" name="genderR" value="male">
+                                        <label for="male">Masculino</label><br>
+                                        <input type="radio" id="female" name="genderR" value="female">
+                                        <label for="female">Femenino</label><br>
 
 
                                     </div>
@@ -253,7 +255,7 @@ include '../../service/administratorService.php';
                                     </div>
                                 </form>
                             </div>
-                            
+
                         </div>
                         <div class="col-md-6">
                             <div class="card card-primary">
@@ -261,7 +263,7 @@ include '../../service/administratorService.php';
                                     <h3 class="card-title">Formulario Alumno:</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <form role="form1" data-toggle="validator" method="post" >
+                                <form role="form1" data-toggle="validator" method="post">
                                     <div class="card-body">
                                         <div class="card-header">
                                             <h3 class="card-title">Datos del Alumno:</h3>
@@ -296,14 +298,14 @@ include '../../service/administratorService.php';
                                             <input type="text" class="form-control" id="exampleText"
                                                 placeholder="Ingrese su numero de  Teléfono">
                                         </div>
-                                        
+
                                         <label for="exampleInputText">Genero:</label></br>
-                                            <input type="radio" id="male" name="genderA" value="male">
-                                            <label for="male">Masculino</label><br>
-                                            <input type="radio" id="female" name="genderA" value="female">
-                                            <label for="female">Femenino</label><br>
-                                        
-                                        
+                                        <input type="radio" id="male" name="genderA" value="male">
+                                        <label for="male">Masculino</label><br>
+                                        <input type="radio" id="female" name="genderA" value="female">
+                                        <label for="female">Femenino</label><br>
+
+
 
 
                                     </div>
@@ -314,7 +316,7 @@ include '../../service/administratorService.php';
                                     </div>
                                 </form>
                             </div>
-                            
+
                         </div>
 
                     </div>

@@ -67,7 +67,8 @@ if (!isset($_SESSION['USU'])) {
             <!-- SEARCH FORM -->
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                        aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-navbar" type="submit">
                             <i class="fas fa-search"></i>
@@ -82,7 +83,7 @@ if (!isset($_SESSION['USU'])) {
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="../../index3.html" class="brand-link">
-                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle1 ">
+                <img src="../../dist/img/Primeras.png" alt="AdminLTE Logo" class="brand-image img-circle1 ">
                 <span class="brand-text font-weight-light"><?php echo $_SESSION['USU']['ROL'] ?></span>
             </a>
             <!-- Sidebar -->
@@ -101,7 +102,8 @@ if (!isset($_SESSION['USU'])) {
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
@@ -192,14 +194,17 @@ if (!isset($_SESSION['USU'])) {
                                     </div>
                                     <div class="form-group">
                                         <label>Mensaje:</label>
-                                        <textarea class="form-control" rows="3" placeholder="Ingrese Mensaje"></textarea>
+                                        <textarea class="form-control" rows="3"
+                                            placeholder="Ingrese Mensaje"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputFile">File input</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" name="archivo" class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label"  for="exampleInputFile">Choose file</label>
+                                                <input type="file" name="archivo" class="custom-file-input"
+                                                    id="exampleInputFile">
+                                                <label class="custom-file-label" for="exampleInputFile">Choose
+                                                    file</label>
                                             </div>
                                             <div class="input-group-append">
                                                 <span class="input-group-text" id="">Upload</span>
@@ -249,7 +254,7 @@ if (!isset($_SESSION['USU'])) {
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
