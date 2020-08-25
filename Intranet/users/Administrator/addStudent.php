@@ -1,11 +1,38 @@
 <?php
 session_start();
 if (!isset($_SESSION['USU'])) {
-  header('Location: ../../../Seed/login.html');
+    header('Location: ../../../Seed/login.html');
 }
 
 include '../../service/administratorService.php';
+include '../../service/studentService.php';
+$studentService = new studentService();
 
+if (isset($_POST["btn_subR"])) {
+
+    $studentService->insertPeopleRepresentative(
+        $_POST["cedRepresentantive"],
+        $_POST["snRepresentative"],
+        $_POST["nameRepresentative"],
+        $_POST["addressRepresentative"],
+        $_POST["telfRepresentative"],
+        $_POST["dateBrhRepresentative"],
+        $_POST["genderR"],
+        $_POST["pemailRepresentative"]
+    );
+} elseif (isset($_POST["btn_subA"])) {
+    echo ("<script>console.log('PHP: pass btnA');</script>");
+    $studentService->insertPeopleAlumn(
+        $_POST["cedAlumn"],
+        $_POST["snameAlumn"],
+        $_POST["nameAlumn"],
+        $_POST["addreAlumn"],
+        $_POST["telefAlumn"],
+        $_POST["dateBirthAlumn"],
+        $_POST["genderA"],
+        $_POST["emailpAlumn"]
+    );
+}
 
 ?>
 
@@ -45,40 +72,14 @@ include '../../service/administratorService.php';
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="./index3.html" class="nav-link">Inicio</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
-            </ul>
-
-            <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                        aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </nav>
+        <?php include("../../views/barNav.php"); ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="../../index3.html" class="brand-link">
-                <img src="../../dist/img/Primeras.png" alt="AdminLTE Logo" class="brand-image img-circle1 ">
+                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle1 ">
                 <span class="brand-text font-weight-light"><?php echo $_SESSION['USU']['ROL'] ?></span>
             </a>
             <!-- Sidebar -->
@@ -89,9 +90,9 @@ include '../../service/administratorService.php';
                         <img src="../../dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <?php $temp = explode(" ", $_SESSION['USU']['PNAME'] ); ?>
-                        <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME'] ); ?>
-                        <a href="#" class="d-block"><?php echo $temp[0];?></br> <?php echo $temp2[0];?> </a>
+                        <?php $temp = explode(" ", $_SESSION['USU']['PNAME']); ?>
+                        <?php $temp2 = explode(" ", $_SESSION['USU']['P2NAME']); ?>
+                        <a href="#" class="d-block"><?php echo $temp[0]; ?></br> <?php echo $temp2[0]; ?> </a>
                     </div>
                 </div>
 
@@ -102,32 +103,32 @@ include '../../service/administratorService.php';
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-                        <li class="nav-item">
-                            <a href="./index.php" class="nav-link active">
+               <li class="nav-item">
+                            <a href="index.php" class="nav-link active">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Inicio
-                                    <span class="right badge badge-danger">New</span>
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-header">Gestionar</li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="fa fa-users red-bg"></i>
                                 <p>
-                                    Gestion
+                                    Personas
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="../../index.html" class="nav-link">
+                                    <a href="./managTeacher.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Profesores</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index2.html" class="nav-link">
+                                    <a href="./managStudent.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Alumnos</p>
                                     </a>
@@ -139,13 +140,56 @@ include '../../service/administratorService.php';
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index3.html" class="nav-link">
+                                    <a href="./managAspirant.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Aspirantes</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-users red-bg"></i>
+                                <p>
+                                    Periodo
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="./assignPeriod.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Gestión de Periodo</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./assignTeacher.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Asignación Docente</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./assignRegistration.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Matrícula</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./managLevel.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Niveles</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="./assignSubject.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Asignaturas</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
 
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -165,7 +209,7 @@ include '../../service/administratorService.php';
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                                <li class="breadcrumb-item"><a href="#">Gestion Alumno</a></li>
+                                <li class="breadcrumb-item"><a href="managStudent">Gestion Alumno</a></li>
                                 <li class="breadcrumb-item active">Agregar Alumno</li>
                             </ol>
                         </div>
@@ -198,52 +242,43 @@ include '../../service/administratorService.php';
                                     <h3 class="card-title">Formulario Representante:</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <form role="form" data-toggle="validator" method="post">
+                                <form id="formRepresentative" role="form" action="" data-toggle="validator" method="post">
                                     <div class="card-body">
                                         <div class="card-header">
                                             <h3 class="card-title">Datos del Representante:</h3>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Numero de Cédula</label>
-                                            <input type="text" class="form-control" id="exampleText"
-                                                name="cedRepresentantive" placeholder="Ingrese Numero de Cédula"
-                                                maxlength="10">
+                                            <input type="text" class="form-control" id="exampleText" name="cedRepresentantive" placeholder="Ingrese Numero de Cédula" maxlength="10" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nombres</label>
-                                            <input type="text" class="form-control" id="exampleText"
-                                                name="nameRepresenative" placeholder="Ingrese sus Nombres">
+                                            <input type="text" class="form-control" id="exampleText" name="nameRepresentative" placeholder="Ingrese sus Nombres" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Apellidos</label>
-                                            <input type="text" class="form-control" id="exampleText"
-                                                name="snRrepresentative" placeholder="Ingrese sus pellidos">
+                                            <input type="text" class="form-control" id="exampleText" name="snRepresentative" placeholder="Ingrese sus pellidos" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Fecha nacimiento</label>
-                                            <input type="date" class="form-control" id="exampleText"
-                                                name="dateBrhRepresentative"
-                                                placeholder="Ingrese su Fecha de Nacimiento">
+                                            <input type="date" class="form-control" id="exampleText" name="dateBrhRepresentative" placeholder="Ingrese su Fecha de Nacimiento" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Correo Personal</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                                name="pemailRepresentative" placeholder="Ingrese su email">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" name="pemailRepresentative" placeholder="Ingrese su email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Teléfono</label>
-                                            <input type="text" class="form-control" id="exampleText"
-                                                name="telfRepresentative" placeholder="Ingrese su numero de  Teléfono">
+                                            <input type="text" class="form-control" id="exampleText" name="telfRepresentative" placeholder="Ingrese su numero de  Teléfono">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Dirección</label>
-                                            <input type="text" class="form-control" id="exampleText"
-                                                name="addressRepresentative" placeholder="Ingrese su dirección">
+                                            <input type="text" class="form-control" id="exampleText" name="addressRepresentative" placeholder="Ingrese su dirección" required>
                                         </div>
                                         <label for="exampleInputText">Genero:</label></br>
-                                        <input type="radio" id="male" name="genderR" value="male">
+                                        <input type="radio" id="male" name="genderR" value="MAS" required>
                                         <label for="male">Masculino</label><br>
-                                        <input type="radio" id="female" name="genderR" value="female">
+                                        <input type="radio" id="female" name="genderR" value="FEM" required>
                                         <label for="female">Femenino</label><br>
 
 
@@ -251,7 +286,7 @@ include '../../service/administratorService.php';
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                        <button name="btn_subR" type="submit" class="btn btn-primary">Enviar</button>
                                     </div>
                                 </form>
                             </div>
@@ -263,46 +298,43 @@ include '../../service/administratorService.php';
                                     <h3 class="card-title">Formulario Alumno:</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <form role="form1" data-toggle="validator" method="post">
+                                <form role="form" id="formAlumn" action="" data-toggle="validator" method="post">
                                     <div class="card-body">
                                         <div class="card-header">
                                             <h3 class="card-title">Datos del Alumno:</h3>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Numero de Cédula</label>
-                                            <input type="text" class="form-control" id="exampleText"
-                                                placeholder="Ingrese Numero de Cédula" maxlength="10">
+                                            <input type="text" class="form-control" id="exampleText" name="cedAlumn" placeholder="Ingrese Numero de Cédula" maxlength="10" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nombres</label>
-                                            <input type="text" class="form-control" id="exampleText"
-                                                placeholder="Ingrese sus Nombres">
+                                            <input type="text" class="form-control" id="exampleText" name="nameAlumn" placeholder="Ingrese sus Nombres" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Apellidos</label>
-                                            <input type="text" class="form-control" id="exampleText"
-                                                placeholder="Ingrese sus pellidos">
+                                            <input type="text" class="form-control" id="exampleText" name="snameAlumn" placeholder="Ingrese sus pellidos" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Fecha nacimiento</label>
-                                            <input type="date" class="form-control" id="exampleText"
-                                                placeholder="Ingrese su Fecha de Nacimiento">
+                                            <input type="date" class="form-control" id="exampleText" name="dateBirthAlumn" placeholder="Ingrese su Fecha de Nacimiento" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Correo Personal</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                                placeholder="Ingrese su email">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" name="emailpAlumn" placeholder="Ingrese su email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Teléfono</label>
-                                            <input type="text" class="form-control" id="exampleText"
-                                                placeholder="Ingrese su numero de  Teléfono">
+                                            <input type="text" class="form-control" id="exampleText" name="telefAlumn" placeholder="Ingrese su numero de  Teléfono" required>
                                         </div>
-
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Dirección</label>
+                                            <input type="text" class="form-control" id="exampleText" name="addreAlumn" placeholder="Ingrese su dirección" required>
+                                        </div>
                                         <label for="exampleInputText">Genero:</label></br>
-                                        <input type="radio" id="male" name="genderA" value="male">
+                                        <input type="radio" id="male" name="genderA" value="MAS" required>
                                         <label for="male">Masculino</label><br>
-                                        <input type="radio" id="female" name="genderA" value="female">
+                                        <input type="radio" id="female" name="genderA" value="FEM" required>
                                         <label for="female">Femenino</label><br>
 
 
@@ -312,40 +344,20 @@ include '../../service/administratorService.php';
                                     <!-- /.card-body -->
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                        <button name="btn_subA" type="submit" class="btn btn-primary">Enviar</button>
                                     </div>
                                 </form>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
-
             </section>
-
-
         </div>
-
-
-
-
-
-
-
         <!-- Main content -->
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.5
-        </div>
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-        reserved.
-    </footer>
+    <?php include("../../views/footer.php");?>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -361,7 +373,7 @@ include '../../service/administratorService.php';
     <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-    $.widget.bridge('uibutton', $.ui.button)
+        $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

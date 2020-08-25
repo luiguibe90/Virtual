@@ -1,5 +1,5 @@
 <?php
-include 'mainService.php';
+include_once 'mainService.php';
 class administratorService extends mainService{
  function countTypePeople($codTypePeople){
    $sql_sel = $this->conex->query("
@@ -18,7 +18,5 @@ class administratorService extends mainService{
 
 
 
+
 }
-
-
-?>
