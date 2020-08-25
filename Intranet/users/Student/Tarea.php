@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['USU'])) {
-    header('Location: ../../../Seed/login.html');
+    header('Location: ../../../PrimerasTravesuras/login.html');
 }
 include '../../service/studentService.php';
 $studentService = new studentService();
@@ -44,6 +44,7 @@ $studentService = new studentService();
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar -->

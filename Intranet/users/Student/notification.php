@@ -5,7 +5,7 @@ $tarea = new TareaServicios();
 session_start();
 $cod_alumno = $_SESSION['USU']['COD_PERSONA'];
 if (!isset($_SESSION['USU'])) {
-  header('Location: ../../../Seed/login.html');
+    header('Location: ../../../PrimerasTravesuras/login.html');
 }
 $accion = "Aceptar";
 

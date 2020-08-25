@@ -1,9 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['USU'])) {
-    header('Location: ../../../Seed/login.html');
+    header('Location: ../../../PrimerasTravesuras/login.html');
 }
-
 include '../../service/administratorService.php';
 $administratorService = new administratorService();
 $countAlumns = $administratorService->countTypePeople(1);

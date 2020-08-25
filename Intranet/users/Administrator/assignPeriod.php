@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['USU'])) {
-    header('Location: ../../../Seed/login.html');
+    header('Location: ../../../PrimerasTravesuras/login.html');
 }
 header('Access-Control-Allow-Origin: *');
 date_default_timezone_set('America/Bogota');
