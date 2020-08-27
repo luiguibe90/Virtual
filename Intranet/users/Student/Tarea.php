@@ -48,33 +48,9 @@ $studentService = new studentService();
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="../users/student.html" class="nav-link">Inicio</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contacto</a>
-        </li>
-      </ul>
-
-      <!-- SEARCH FORM -->
-      <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-    </nav>
-    <!-- /.navbar -->
+    <?php
+        include("../../views/barNav.php");
+    ?>
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -104,42 +80,9 @@ $studentService = new studentService();
           ?>
           <div class="sidebar-brand-text mx-3"><?php echo $row['NOMBRE'] ?></div>
         </a>
+
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-
-            <li class="nav-item">
-              <a href="./index.php" class="nav-link ">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Inicio
-                </p>
-              </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
-              <a class="nav-link collapsed" href="./Tarea.php?codigoAsignatura=<?php echo $_GET['codigoAsignatura'] ?>" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-edit"></i>
-                <span>Tareas</span>
-              </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="./Comunicado.php?codigoAsignatura=<?php echo $_GET['codigoAsignatura'] ?>" aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-bullhorn"></i>
-                <span>Comunicados</span>
-              </a>
-            </li>
-
-          </ul>
-          </li>
-        </nav>
+        <?php include("../../views/menuEstudiante.php"); ?>
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
@@ -258,17 +201,7 @@ $studentService = new studentService();
 
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <p>
-        Copyright &copy;
-        <script>
-          document.write(new Date().getFullYear());
-        </script> All rights reserved | SeedSchool
-      </p>
-    </div>
-
-  </footer>
+  <?php include("../../views/footer.php"); ?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

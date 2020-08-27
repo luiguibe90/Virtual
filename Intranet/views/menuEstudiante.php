@@ -37,7 +37,7 @@
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="../../index3.html" class="nav-link">
+                      <a href="../../users/Student/Tarea.php" class="nav-link">
                         <i class="far ion-ios-book-outline av-icon"></i>
                         <p>Archivos</p>
                       </a>

@@ -2,7 +2,7 @@
 session_start();
 $cod_docente = $_SESSION['USU']['COD_PERSONA'];
 if (!isset($_SESSION['USU'])) {
-    header('Location: ../../../Seed/login.html');
+    header('Location: ../../../PrimerasTravesuras/login.html');
 }
 include '../../service/attendanceService.php';
 $asistencia = new attendanceService();

@@ -4,7 +4,7 @@
             Copyright &copy;
             <script>
                 document.write(new Date().getFullYear());
-            </script> All rights reserved | SeedSchool
+            </script> All rights reserved | Mis Primeras Travesuras
         </p>
     </div>
 

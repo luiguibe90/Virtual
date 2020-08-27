@@ -1,9 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['USU'])) {
-    header('Location: ../../../Seed/login.html');
-}
-include '../../service/studentService.php';
+    header('Location: ../../../PrimerasTravesuras/login.html');
+}lude '../../service/studentService.php';
 $studentService = new studentService();
 ?>
 
