@@ -21,7 +21,7 @@ $studentService = new studentService();
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- flaticons -->
-  <link rel="stylesheet" href="../../Seed/css/flaticon.css">
+  <link rel="stylesheet" href="../../PrimerasTravesuras/css/flaticon.css">
   <!-- w3icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
@@ -55,7 +55,7 @@ $studentService = new studentService();
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="../../index3.html" class="brand-link">
+      <a href="#" class="brand-link">
         <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle1 ">
         <span class="brand-text font-weight-light"><?php echo $_SESSION['USU']['ROL'] ?></span>
       </a>

@@ -25,10 +25,10 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     }else{
         echo "<script>
                 alert('Error contraseña o Nombre de Usuario');
-                window.location= '../../../Seed/login.html.php'
+                window.location= '../../PrimerasTravesuras/login.html.php'
         </script>";
         //$msg = "Error contraseña o Nombre de Usuario";
-        header("location: ../../../Seed/login.html");
+        header("location: ../../PrimerasTravesuras/login.html");
 
     }
 }

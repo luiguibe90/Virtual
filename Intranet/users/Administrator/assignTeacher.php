@@ -3,12 +3,15 @@ session_start();
 if (!isset($_SESSION['USU'])) {
     header('Location: ../../../PrimerasTravesuras/login.html');
 }
+include '../../service/CalificacionServicios.php';
 
+$calificacion = new CalificacionServicios();
 include '../../service/administratorService.php';
 include '../../service/aspirantService.php';
 $aspirantService = new aspirantService();
-
-
+include '../../service/studentService.php';
+$studentService = new studentService();
+include '../../service/infraestructuraService.php';
 ?>
 
 <!DOCTYPE html>
@@ -104,6 +107,73 @@ $aspirantService = new aspirantService();
 
             <br><br>
 
+    <div class="form-group" style="centered">
+                        <form method="POST" action="assignTeacher2.php">
+                            <div class="modal-body">
+                                
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Docente</label>
+                                    </div>
+
+                                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" name="docente">
+                                                            <?php
+                                                            $result = $studentService->showPeople(3);
+                                                            foreach ($result as $opciones) :
+                                                            ?>
+                                                                <option value="<?php echo $opciones['COD_PERSONA'] ?>"><?php echo $opciones['NOMBRE']; echo ' '; echo $opciones['APELLIDO'] ?></option>
+                                                            <?php endforeach ?>
+                                    </select>
+
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Nivel</label>
+                                    </div>
+                                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" name="nivel">
+                                        <option value="1"> Inicial 1 </option>
+                                    </select>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Asignatura</label>
+                                    </div>
+                                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" name="asignatura">
+                                            <?php
+                                                $studentService = new studentService();
+                                                $result = $studentService -> listarAsignaturas();
+                                                foreach ($result as $opciones) :
+                                            ?>
+                                <option value="<?php echo $opciones['COD_ASIGNATURA'] ?>"><?php echo $opciones['NOMBRE']; ?></option>
+                                <?php endforeach ?>
+                                    </select>
+                                </div>
+                                
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Aula</label>
+                                    </div>
+                                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" name="aula">
+                                            <?php
+                                                $infraestructuraService = new infraestructuraService();
+                                                $result = $infraestructuraService -> listarAulas();
+                                                foreach ($result as $opciones) :
+                                            ?>
+                                <option value="<?php echo $opciones['COD_AULA'] ?>"><?php echo $opciones['NOMBRE']; ?></option>
+                                <?php endforeach ?>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <input type="submit" name="submit" class="btn btn-success" value="Guardar" ></input>
+                                <button id="cerrarRol" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </form>
+    </div>
 
     <div class="row">
         <div class="col-2"></div>
@@ -115,15 +185,25 @@ $aspirantService = new aspirantService();
                 <div class="card-body">
                     <center>
                         <div class="input-group mb-3">
+                       
+
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Módulo Periodo</label>
                             </div>
-                            <select class="custom-select" id="selectRoles">
 
+                            <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" name="periodo">
+                                                <?php
+                                                $result = $calificacion->periodo();
+                                                foreach ($result as $opciones) :
+                                                ?>
+                                                    <option value="<?php echo $opciones['COD_PERIODO_LECTIVO'] ?>"><?php echo 'DEL '; echo $opciones['FECHA_INICIO']; echo ' AL '; echo $opciones['FECHA_FIN']; ?></option>
+                                                <?php endforeach ?>
                             </select>
+
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button" onclick="tablaRoles()">Buscar</button>
                             </div>
+
                         </div>
                     </center>
                     <center><button class="btn btn-success" type="button" data-toggle='modal'
@@ -147,87 +227,6 @@ $aspirantService = new aspirantService();
         </div>
     </div><br><br>
 
-    <!-- Modal -->
-    <div class="modal fade" id="nuevoModulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuevo módulo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Nombre del módulo</span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Nombre" aria-label="Username"
-                            aria-describedby="basic-addon1" id="nombre">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="crearNuevo()">Guardar</button>
-                    <button id="cerrar" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="nuevoRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nueva asignación de Docente por asignatura</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Docente</label>
-                        </div>
-                        <select class="custom-select" id="selecroles">
-
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Asignatura</label>
-                        </div>
-                        <select class="custom-select" id="selecmodulos">
-
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Horario</label>
-                        </div>
-                        <select class="custom-select" id="selecmodulos">
-
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01">Aula</label>
-                        </div>
-                        <select class="custom-select" id="selecmodulos">
-
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" onclick="guardarNuevoRol()">Guardar</button>
-                    <button id="cerrarRol" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -240,323 +239,6 @@ $aspirantService = new aspirantService();
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
-    <script>
-
-        var id
-        var tblfunc
-        var roles
-        var idRol
-        var idModulo
-
-        $(document).ready(function () {
-
-            var tblModulos = $('#tblModulos').DataTable({
-                "ajax": "consultas/modulos.php?listaModulos=true",
-                "columns": [
-                    { "data": "COD_MODULO" },
-                    { "data": "NOMBRE" },
-                    { "data": "ESTADO" },
-                    { "data": null, "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#exampleModal'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarModulo()'>Desactivar</button>", orderData: false },
-                ],
-                "language": {
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-                }
-            });
-            $('#tblModulos tbody').on('click', 'td', function () {
-                var data = tblModulos.row($(this).parents('tr')).data();
-                id = data['COD_MODULO'];
-                document.getElementById('nombreModulo').value = data['NOMBRE']
-                document.getElementById('estadoModulo').value = data['ESTADO']
-            });
-
-            $.fn.dataTable.ext.errMode = 'none'
-
-            llenarSelectModulos()
-            llenarSelectRoles()
-            llenarVarios()
-
-        });
-
-        function tablaFunciones() {
-            var modulo = document.getElementById('selectModulos').value
-            tblfunc = $('#tblfunc').DataTable({
-                "ajax": "consultas/modulos.php?listaFunciones=true&modulo=" + modulo,
-                "columns": [
-                    { "data": "COD_FUNCIONALIDAD", visible: false },
-                    { "data": "URL_PRINCIPAL" },
-                    { "data": "NOMBRE" },
-                    { "data": "DESCRIPCION" },
-                    { "data": null, "defaultContent": "<button type='button' class='btn btn-sm rounded btn-warning' data-toggle='modal' data-target='#modalFuncion'>Editar</button>&nbsp<button class='btn btn-sm rounded btn-danger' onclick='eliminarFuncion()'>Eliminar</button>", orderData: false },
-                ],
-                "destroy": true,
-                "language": {
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-                }
-            });
-            $('#tblfunc tbody').on('click', 'td', function () {
-                var data = tblfunc.row($(this).parents('tr')).data();
-                idFunc = data['COD_FUNCIONALIDAD'];
-                document.getElementById('urlPrincipal').value = data['URL_PRINCIPAL']
-                document.getElementById('nombreFuncion').value = data['NOMBRE']
-                document.getElementById('descriFuncion').value = data['DESCRIPCION']
-            });
-        }
-
-        function tablaRoles() {
-            var rol = document.getElementById('selectRoles').value
-            roles = $('#roles').DataTable({
-                "ajax": "consultas/modulos.php?listaRoles=true&rol=" + rol,
-                "columns": [
-                    { "data": "COD_ROL", visible: false },
-                    { "data": "COD_MODULO", visible: false },
-                    { "data": "NOMBRE" },
-                    { "data": null, "defaultContent": "<button class='btn btn-sm rounded btn-danger' onclick='eliminarRol()'>Eliminar</button>", orderData: false },
-                ],
-                "destroy": true,
-                "language": {
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-                }
-            });
-            $('#roles tbody').on('click', 'td', function () {
-                var data = roles.row($(this).parents('tr')).data();
-                idModulo = data['COD_MODULO'];
-                idRol = data['COD_ROL']
-                document.getElementById('nombreModulo').value = data['NOMBRE']
-                document.getElementById('estadoModulo').value = data['ESTADO']
-            });
-        }
-
-        function eliminarFuncion() {
-            $.ajax({
-                url: "./consultas/modulos.php?eliminarFuncion=true&idFuncion=" + idFunc,
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("La funcionalidad ha sido eliminado exitosamente")
-                        $('#tblfunc').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function eliminarRol() {
-            $.ajax({
-                url: "./consultas/modulos.php?eliminarRol=true&idRol=" + idRol + '&idModulo=' + idModulo,
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El módulo ha sido eliminado exitosamente")
-                        $('#roles').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function llenarSelectModulos() {
-            $.ajax({
-                url: "./consultas/modulos.php?selectModulos=true",
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data != "mal") {
-                        var selectModulos = document.getElementById("selectModulos");
-                        selectModulos.innerHTML = data;
-                        var selectModulosFuncionalidad = document.getElementById("selectModulosFuncionalidad");
-                        selectModulosFuncionalidad.innerHTML = data;
-                    }
-                }
-            });
-        }
-
-        function llenarSelectRoles() {
-            $.ajax({
-                url: "./consultas/modulos.php?selectRoles=true",
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data != "mal") {
-                        var selectRoles = document.getElementById("selectRoles");
-                        selectRoles.innerHTML = data;
-                    }
-                }
-            });
-        }
-
-        function llenarVarios() {
-            $.ajax({
-                url: "./consultas/modulos.php?selectModulos=true",
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data != "mal") {
-                        var selectModulos = document.getElementById("selecmodulos");
-                        selectModulos.innerHTML = data;
-                    }
-                }
-            });
-            $.ajax({
-                url: "./consultas/modulos.php?selectRoles=true",
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data != "mal") {
-                        var selectRoles = document.getElementById("selecroles");
-                        selectRoles.innerHTML = data;
-                    }
-                }
-            });
-        }
-
-        function eliminarModulo() {
-            $.ajax({
-                url: "./consultas/modulos.php?eliminarModulo=true&id=" + id,
-                data: {},
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El módulo ha sido eliminado exitosamente")
-                        $('#tblModulos').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function guardarCambios() {
-            var nombre = document.getElementById('nombreModulo').value
-            var estado = document.getElementById('estadoModulo').value
-            $.ajax({
-                url: "./consultas/modulos.php?editarModulo=true&id=" + id,
-                data: { nombre: nombre, estado: estado },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El módulo ha sido editado exitosamente")
-                        $('#cerrarModal').click()
-                        $('#tblModulos').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function crearNuevo() {
-            var nombre = document.getElementById('nombre').value
-            $.ajax({
-                url: "./consultas/modulos.php?nuevoModulo=true",
-                data: { nombre: nombre },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El módulo ha sido registrado exitosamente")
-                        $('#cerrar').click()
-                        $('#tblModulos').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function guardarNuevoRol() {
-            var rol = document.getElementById('selecroles').value
-            var modulo = document.getElementById('selecmodulos').value
-            $.ajax({
-                url: "./consultas/modulos.php?nuevoRol=true",
-                data: { rol: rol, modulo: modulo },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("El módulo ha sido registrado exitosamente")
-                        $('#cerrarRol').click()
-                        $('#roles').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function guardarFuncion() {
-            var url = document.getElementById('urlPrincipal').value
-            var nombre = document.getElementById('nombreFuncion').value
-            var descripcion = document.getElementById('descriFuncion').value
-            $.ajax({
-                url: "./consultas/modulos.php?editarFuncion=true",
-                data: { urlP: url, nombre: nombre, descripcion: descripcion, id: idFunc },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("Los cambios han sido guardados exitosamente")
-                        $('#cerrarFuncion').click()
-                        $('#tblfunc').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-        function guardarFuncionNuevo() {
-            var url = document.getElementById('urlPrincipalNuevo').value
-            var nombre = document.getElementById('nombreFuncionNuevo').value
-            var descripcion = document.getElementById('descriFuncionNuevo').value
-            var selectNuevo = document.getElementById('selectModulosFuncionalidad').value
-            $.ajax({
-                url: "./consultas/modulos.php?nuevaFuncion=true",
-                data: { urlP: url, nombre: nombre, descripcion: descripcion, modulo: selectNuevo },
-                type: "POST",
-                success: function (data) {
-                    if (data == "exito") {
-                        alert("La nueva funcionalidad ha sido guardada exitosamente")
-                        $('#cerrarNue').click()
-                        $('#tblfunc').DataTable().ajax.reload()
-                    }
-                },
-            });
-        }
-
-    </script>
 
 
 

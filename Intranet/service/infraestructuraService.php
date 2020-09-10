@@ -85,6 +85,11 @@ class infraestructuraService extends mainService
         $stmt->execute();
         $stmt->close();
     }
+
+    function listarAulas()
+    {
+        return $this->conex->query("SELECT * FROM AULA");
+    }
    
     function encontrarAula($codigo_aula)
     {

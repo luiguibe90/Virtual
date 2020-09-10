@@ -122,7 +122,7 @@ $studentService = new studentService();
                                                 $result = $calificacion->periodo();
                                                 foreach ($result as $opciones) :
                                                 ?>
-                                                    <option value="<?php echo $opciones['COD_PERIODO_LECTIVO'] ?>"><?php echo $opciones['COD_PERIODO_LECTIVO'] ?></option>
+                                                    <option value="<?php echo $opciones['COD_PERIODO_LECTIVO'] ?>"><?php echo ('DEL '); echo $opciones['FECHA_INICIO']; echo(' AL '); echo $opciones['FECHA_FIN']; ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
@@ -205,41 +205,53 @@ $studentService = new studentService();
                                 ?>
                                     <?php
                                     ?>
-                                    <div class="table-responsive">
-                                        <table id="tablaEstudiantesCalificaciones" class="table-striped table-bordered table-condensed" style="width: 100%;">
-                                            <thead class="text-center">
-                                                <tr>
-                                                    <th>ASIGNATURA</th>
-                                                    <th>NOTA 1</th>
-                                                    <th>NOTA 2</th>
-                                                    <th>NOTA 3</th>
-                                                    <th>PROMEDIO</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $result = $calificacion->calificacionGeneral2($cod_alumno, $periodo);
-                                                if ($result->num_rows > 0) {
-                                                    while ($row = $result->fetch_assoc()) {
-                                                ?>
-                                                        <tr>
-                                                            <!--DATOS DE LA TABLA SEDES-->
-                                                            <td><?php echo $row['NOMBRE']; ?></td>
-                                                            <td><?php echo $row["NOTA4"]; ?></td>
-                                                            <td><?php echo $row["NOTA5"]; ?></td>
-                                                            <td><?php echo $row["NOTA6"]; ?></td>
-                                                            <td><?php echo round(($row["NOTA4"] + $row['NOTA5'] + +$row['NOTA6']) / 3, 2); ?></td>
-                                                        </tr>
-                                                    <?php   }
-                                                } else {
-                                                    ?>
+
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Listado Calificaciones</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body table-responsive p-0">
+
+                                            <table id="tablaEstudiantesCalificaciones" class="table table-hover text-nowrap" style="width: 100%;">
+                                                <thead>
                                                     <tr>
-                                                        <td>No hay datos en la tabla</td>
+                                                        <th>Asignatura</th>
+                                                        <th>Deberes</th>
+                                                        <th>Talleres</th>
+                                                        <th>Pruebas</th>
+                                                        <th>Promedio</th>
                                                     </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    $result = $calificacion->calificacionGeneral2($cod_alumno, $periodo);
+                                                    if ($result->num_rows > 0) {
+                                                        while ($row = $result->fetch_assoc()) {
+                                                    ?>
+                                                            <tr>
+                                                                <!--DATOS DE LA TABLA SEDES-->
+                                                                <td><?php echo $row['NOMBRE']; ?></td>
+                                                                <td><?php echo $row["NOTA4"]; ?></td>
+                                                                <td><?php echo $row["NOTA5"]; ?></td>
+                                                                <td><?php echo $row["NOTA6"]; ?></td>
+                                                                <td><?php echo round(($row["NOTA4"] + $row['NOTA5'] + +$row['NOTA6']) / 3, 2); ?></td>
+                                                            </tr>
+                                                        <?php   }
+                                                    } else {
+                                                        ?>
+                                                        <tr>
+                                                            <td>No hay datos en la tabla</td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
+                                </div>
+
+                                   
                                 <?php
                                 } ?>
                             </div>
@@ -251,173 +263,7 @@ $studentService = new studentService();
     </div>
     </section>
 
-    <section class="full-reset text-center" style="padding: 40px 0;">
-        <div class="container-fluid">
-            <div class="container-flat-form">
-                <form method="post">
-                    <div class="row">
-                        <div class="group-material col-xs-12 col-sm-8 col-sm-offset-2">
-                            <span style="color: #000000;">
-                                <p>Verificar Notas Quimestrales</p>
-                            </span>
-                            <span style="color: #000000;">
-                                <p>Seleccione el periodo lectivo</p>
-                            </span>
-                            <select class="form-control" name="periodo">
-                                <option value="" disabled="" selected="">Selecciona el periodo</option>
-                                <?php
-                                $result = $calificacion->periodo();
-                                foreach ($result as $opciones) :
-                                ?>
-                                    <option value="<?php echo $opciones['COD_PERIODO_LECTIVO'] ?>"><?php echo $opciones['COD_PERIODO_LECTIVO'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="group-material col-xs-12 col-sm-8 col-sm-offset-2">
-                            <?php
-                            $resultPeriodo = $calificacion->periodo();
-                            $valores = $resultPeriodo->fetch_assoc();
-                            $cod_periodo_lectivo = $valores['COD_PERIODO_LECTIVO'];
-                            echo "VALOR" . $cod_periodo_lectivo;
-                            ?>
-                            <span style="color: #000000;">
-                                <p>Seleccione la asignatura</p>
-                            </span>
-                            <select class="form-control" name="asignatura">
-                                <option value="" disabled="" selected="">Selecciona la asignatura</option>
-                                <?php
-                                $result2 = $calificacion->asignaturasEstudiante($cod_alumno, $cod_periodo_lectivo);
-                                foreach ($result2 as $opciones) :
-                                ?>
-                                    <option value="<?php echo $opciones['COD_ASIGNATURA'] ?>|<?php echo $opciones['NOMBRE'] ?>"><?php echo $opciones['NOMBRE'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="group-material col-xs-12 col-sm-8 col-sm-offset-2">
-                            <span style="color: #000000;">
-                                <p>Seleccione el quimestre</p>
-                            </span>
-                            <select class="form-control" name="quimestre">
-                                <option value="" disabled="" selected="">Selecciona el quimestre</option>
-                                <option value="QUIMESTRE1">Primer quimestre</option>
-                                <option value="QUIMESTRE2">Segundo quimestre</option>
-                            </select>
-                        </div>
-                        <div class="group-material col-xs-12 col-sm-8 col-sm-offset-2">
-                            <p class="text-center">
-                                <input type="submit" name="accionCalificacion" value="Aceptar" class="btn btn-primary" style="margin-right: 20px;">
-                                <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                            </p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-        <div class="container-fluid">
-            <?php
-            if (isset($_POST['accionCalificacion']) && ($_POST['accionCalificacion'] == 'Aceptar') && ($_POST['quimestre'] == 'QUIMESTRE1')) {
-                $periodo = $_POST['periodo'];
-                $asignatura = $_POST['asignatura'];
-                $result_explode = array_map('trim', explode('|', $asignatura));
-                $cod_asignatura = $result_explode[0];
-                $nombre_asignatura = $result_explode[1];
-            ?>
-                <?php
-                ?>
-                <div class="table-responsive">
-                    <table id="tablaEstudiantesCalificaciones" class="table-striped table-bordered table-condensed" style="width: 100%;">
-                        <thead class="text-center">
-                            <tr>
-                                <th>ASIGNATURA</th>
-                                <th>NOTA 1</th>
-                                <th>NOTA 2</th>
-                                <th>NOTA 3</th>
-                                <th>PROMEDIO QUIMESTRAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $result = $calificacion->calificacionesEstudiante($cod_alumno, $cod_asignatura);
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                            ?>
-                                    <tr>
-                                        <!--DATOS DE LA TABLA SEDES-->
-                                        <td><?php echo $nombre_asignatura; ?></td>
-                                        <td><?php echo $row["NOTA1"]; ?></td>
-                                        <td><?php echo $row["NOTA2"]; ?></td>
-                                        <td><?php echo $row["NOTA3"]; ?></td>
-                                        <td><?php echo round(($row["NOTA1"] + $row['NOTA2'] + +$row['NOTA3']) / 3, 2); ?></td>
-                                    </tr>
-                                <?php   }
-                            } else {
-                                ?>
-                                <tr>
-                                    <td>No hay datos en la tabla</td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-                <input type="submit" name="accionNotas" value="Hecho" class="btn btn-primary" style="margin-right: 20px;">
-            <?php
-            } ?>
-
-        </div>
-        <div class="container-fluid">
-            <?php
-            if (isset($_POST['accionCalificacion']) && ($_POST['accionCalificacion'] == 'Aceptar') && ($_POST['quimestre'] == 'QUIMESTRE2')) {
-                $periodo = $_POST['periodo'];
-                $asignatura = $_POST['asignatura'];
-                $result_explode = array_map('trim', explode('|', $asignatura));
-                $cod_asignatura = $result_explode[0];
-                $nombre_asignatura = $result_explode[1];
-            ?>
-                <?php
-                ?>
-                <div class="table-responsive">
-                    <table id="tablaEstudiantesCalificaciones" class="table-striped table-bordered table-condensed" style="width: 100%;">
-                        <thead class="text-center">
-                            <tr>
-                                <th>ASIGNATURA</th>
-                                <th>NOTA 1</th>
-                                <th>NOTA 2</th>
-                                <th>NOTA 3</th>
-                                <th>PROMEDIO QUIMESTRAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $result = $calificacion->calificacionesEstudiante2($cod_alumno, $cod_asignatura);
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                            ?>
-                                    <tr>
-                                        <!--DATOS DE LA TABLA SEDES-->
-                                        <td><?php echo $nombre_asignatura; ?></td>
-                                        <td><?php echo $row["NOTA4"]; ?></td>
-                                        <td><?php echo $row["NOTA5"]; ?></td>
-                                        <td><?php echo $row["NOTA6"]; ?></td>
-                                        <td><?php echo round(($row["NOTA4"] + $row['NOTA5'] + +$row['NOTA6']) / 3, 2); ?></td>
-                                    </tr>
-                                <?php   }
-                            } else {
-                                ?>
-                                <tr>
-                                    <td>No hay datos en la tabla</td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-                <input type="submit" name="accionNotas" value="Hecho" class="btn btn-primary" style="margin-right: 20px;">
-            <?php
-            } ?>
-
-        </div>
-    </section>
+    
 
     </div>
     </div>

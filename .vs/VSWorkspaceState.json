@@ -2,10 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\Intranet",
+    "\\Intranet\\service",
     "\\Intranet\\users",
+    "\\Intranet\\users\\Administrator",
     "\\Intranet\\users\\Student",
+    "\\Intranet\\users\\Teacher",
     "\\Intranet\\views"
   ],
-  "SelectedNode": "\\Intranet\\views\\menuEstudiante.php",
+  "SelectedNode": "\\Intranet\\service\\infraestructuraService.php",
   "PreviewInSolutionExplorer": false
 }

@@ -44,23 +44,22 @@ include_once 'mainService.php';
   function insertPeopleAlumn($cedAlumn,$snameAlumn,$nameAlumn,$addreAlunn,$telefAlumno,
   $dateBirthAlumn,$genderA,$emailpAlumno){
    
-   
-  echo("<script>console.log('PHP:recibido ');</script>");
+    echo("<script>console.log('PHP:recibido ');</script>");
 
-  $sql=" CALL asignedStudentRepresentative(?,?,?,?,?,?,?,?) ";
-  $result = $this->conex->query("SELECT * FROM PERSONA WHERE CEDULA = '$cedAlumn'  ");
-  if($result->num_rows == 0){
-    if( $stmt = $this->conex->prepare($sql)){
-      $stmt->bind_param('ssssssss',$cedAlumn,$snameAlumn,$nameAlumn,$addreAlunn,$telefAlumno,
-      $dateBirthAlumn,$genderA,$emailpAlumno);
-      $stmt->execute();
-      $stmt->close();
-     }
-  }else{
-    echo "<script>alert('Error, el numero de cédula ya existe..');</script>";
-  }
-  
-    $this->conex->close();
+    $sql=" CALL asignedStudentRepresentative(?,?,?,?,?,?,?,?) ";
+    $result = $this->conex->query("SELECT * FROM PERSONA WHERE CEDULA = '$cedAlumn'  ");
+    if($result->num_rows == 0){
+      if( $stmt = $this->conex->prepare($sql)){
+        $stmt->bind_param('ssssssss',$cedAlumn,$snameAlumn,$nameAlumn,$addreAlunn,$telefAlumno,
+        $dateBirthAlumn,$genderA,$emailpAlumno);
+        $stmt->execute();
+        $stmt->close();
+      }
+    }else{
+      echo "<script>alert('Error, el numero de cédula ya existe..');</script>";
+    }
+    
+      $this->conex->close();
 
   }
 
@@ -96,6 +95,11 @@ function findGrades($codAlumno){
 
     function findyAll(){
         return $this->conex->query("SELECT NOMBRE FROM ASIGNATURA");
+    }
+
+    function listarAsignaturas()
+    {
+        return $this->conex->query("select * from asignatura");
     }
 
     function findRelease($codAsignatura){

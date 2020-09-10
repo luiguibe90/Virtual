@@ -14,7 +14,7 @@ $studentService = new studentService();
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title><?php echo $_SESSION['USU']['ROL'] ?>|Seed School</title>
+        <title><?php echo $_SESSION['USU']['ROL'] ?>|Primeras Travesuras/title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Font Awesome -->
@@ -22,7 +22,7 @@ $studentService = new studentService();
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- flaticons -->
-        <link rel="stylesheet" href="../../Seed/css/flaticon.css">
+        <link rel="stylesheet" href="../../PrimerasTravesuras/css/flaticon.css">
         <!-- w3icon -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Tempusdominus Bbootstrap 4 -->

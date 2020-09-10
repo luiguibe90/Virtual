@@ -1,6 +1,5 @@
 <?php 
 
-
 $nombre=$_FILES['archivo']['name'];
 $guardado=$_FILES['archivo']['tmp_name'];
 

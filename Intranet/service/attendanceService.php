@@ -8,7 +8,7 @@ class attendanceService extends mainService
     {
         
         return $this->conex->query("SELECT
-        CONCAT(P.FECHA_INICIO,'AL',P.FECHA_FIN) AS PERIODO,
+        CONCAT(P.FECHA_INICIO,' AL ',P.FECHA_FIN) AS PERIODO,
         P.COD_PERIODO_LECTIVO AS COD_PERIODO_LECTIVO
      FROM
      PERIODO_LECTIVO P

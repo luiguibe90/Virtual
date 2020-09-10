@@ -24,7 +24,7 @@ $accion = "Aceptar";
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- flaticons -->
-    <link rel="stylesheet" href="../../Seed/css/flaticon.css">
+    <link rel="stylesheet" href="../../PrimerasTravesuras/css/flaticon.css">
     <!-- w3icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
@@ -111,13 +111,14 @@ $accion = "Aceptar";
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Seleccione Periodo</label>
+
                                             <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger" name="periodo">
                                                 <?php
                                                 $result = $calificacion->periodo();
 
                                                 foreach ($result as $opciones) :
                                                 ?>
-                                                    <option value="<?php echo $opciones['COD_PERIODO_LECTIVO'] ?>"><?php echo $opciones['COD_PERIODO_LECTIVO'] ?></option>
+                                                    <option value="<?php echo $opciones['COD_PERIODO_LECTIVO'] ?>"><?php echo 'DEL '; echo $opciones['FECHA_INICIO']; echo ' AL '; echo $opciones['FECHA_FIN'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
 
@@ -237,13 +238,10 @@ $accion = "Aceptar";
                                 $codigo_alumno = $_POST['cod_alumno'];
                                 $notas = $_POST['notas'];
                                 foreach (array_combine($codigo_alumno, $notas) as $alumno => $notas) {
-                                    $calificacion->ingresarNotas(
-                                        $_POST['cod_periodo_lectivo'],
+                                    $calificacion->ingresarNotas1(
+                                        
                                         $alumno,
-                                        $_POST['cod_nivel_educativo'],
                                         $_POST['cod_asignatura'],
-                                        $_POST['cod_paralelo'],
-                                        $cod_docente,
                                         $notas['nota1'],
                                         $notas['nota2'],
                                         $notas['nota3']

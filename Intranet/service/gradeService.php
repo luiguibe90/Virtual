@@ -36,6 +36,16 @@ class gradeService extends mainService
         $stmt->execute();
         $stmt->close();
     }
+
+    function ingresarNotas1($cod_alumno,$cod_asignatura,$nota1,$nota2,$nota3)
+    {
+        $stmt = $this->conex->prepare("UPDATE alumno_asignatura_periodo SET NOTA1=?,NOTA2=?,NOTA3=?
+                                          WHERE COD_ALUMNO=? AND COD_ASIGNATURA=?");
+        $stmt->bind_param('dddis' ,$nota1,$nota2,$nota3,$cod_alumno,$cod_asignatura);
+        $stmt->execute();
+        $stmt->close();
+    }
+
     function ingresarNotas2($cod_alumno,$cod_asignatura,$nota1,$nota2,$nota3)
     {
         $stmt = $this->conex->prepare("UPDATE alumno_asignatura_periodo SET NOTA4=?,NOTA5=?,NOTA6=?
